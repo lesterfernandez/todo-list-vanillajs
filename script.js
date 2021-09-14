@@ -7,6 +7,7 @@ todoList.addEventListener("click", deleteCheck);
 
 function addTodo(event) {
   event.preventDefault();
+  if (todoInput.value === "") return;
 
   // Create todo container
   const todoDiv = document.createElement("div");
@@ -44,7 +45,12 @@ function deleteCheck(event) {
   // delete todo
   if (item.classList[0] === "delete-button") {
     const todo = item.parentElement;
-    todo.remove();
+
+    // Animation
+    todo.classList.add("fall");
+    todo.addEventListener("transitionend", () => {
+      todo.remove();
+    });
   }
 
   // checkmark
